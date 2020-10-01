@@ -26,3 +26,23 @@ function checkLogin(){
     pageView('#login-view')
   }
 }
+
+function toRegisterView(event){
+  // 
+}
+
+function toLoginView(event){
+  // 
+}
+
+function toMoviesView(){
+  // 
+}
+
+function toMusicsView(){
+  // 
+}
+
+function toHolidayView(){
+  // 
+}
