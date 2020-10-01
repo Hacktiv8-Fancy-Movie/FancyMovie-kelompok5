@@ -19,7 +19,8 @@ function pageView(el){
 function checkLogin(){
   // jika berhasil login
   if(localStorage.token){
-    pageView('#movies-view')
+    pageView('#holiday-view')
+    toHolidayView()
   }
   // jika tidak berhasil login
   else{
@@ -44,5 +45,20 @@ function toMusicsView(){
 }
 
 function toHolidayView(){
-  // 
+  $.ajax({
+    url: baseUrl + '/calender',
+    method: 'GET'
+  })
+  .done(data => {
+    $('#holiday-container').empty()
+    data.holidays.forEach(el => {
+      $('#holiday-container').append(`
+      <tr>
+        <td>${el.name}</td>
+        <td>${el.date.iso.slice(0,10)}</td>
+      </tr>
+      `)
+    })
+  })
+  .fail(err => console.log(err))
 }
