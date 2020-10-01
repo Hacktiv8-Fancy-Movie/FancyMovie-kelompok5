@@ -58,15 +58,16 @@ class UserController{
    return result;
   }
 
-  static googleSign(req, res, next){
-    const client = new OAuth2Client(process.env.G_CLIENT_ID);
+    static googleSign(req, res, next){
+    const client = new OAuth2Client("805647103784-2kspke3vfdcqodevb2kmvmq865ng8nua.apps.googleusercontent.com");
     client.verifyIdToken({
       idToken: req.body.tokenGoogle,
-      audience: process.env.G_CLIENT_ID,
+      audience: "805647103784-2kspke3vfdcqodevb2kmvmq865ng8nua.apps.googleusercontent.com",
     })
     .then(ticket => {
-      // console.log(ticket.getPayload());
+      // console.log(ticket.getPayload().email);
       let { email } = ticket.getPayload()
+      console.log(email, "EMAIL 1");
       return User.findOne({
         where:{
           email,
@@ -74,6 +75,7 @@ class UserController{
       })
     })
     .then(user => {
+      console.log(email, "EMAIL 2");
       if(user) return user
       else{
         return User.create({
