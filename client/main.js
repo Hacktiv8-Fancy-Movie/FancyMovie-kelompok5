@@ -2,8 +2,7 @@ let baseUrl = "http://localhost:3000"
 let tempId = null
 
 $(document).ready(function() {
-    // checkLogin()
-    toMoviesView()
+    checkLogin()
 });
 
 // kalau ada tambahan list view ditambah disini, fungsi untuk menentukan mana yang mau di view

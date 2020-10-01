@@ -75,7 +75,7 @@ class UserController{
       })
     })
     .then(user => {
-      console.log(email, "EMAIL 2");
+      // console.log(email, "EMAIL 2");
       if(user) return user
       else{
         return User.create({
