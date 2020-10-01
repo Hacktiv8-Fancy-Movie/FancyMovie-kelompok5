@@ -25,14 +25,21 @@
     <title>Fancy Movies</title>
   </head>
   <body>
-    <section id="header-navbar">
+    <div class="container-logout">
+      <button onclick="logout()">logout</button>
+    </div>
+    
+    <section id="navbar">
       <ul class="nav nav-tabs m-4">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Movies</a>
+          <a class="nav-link active" onclick="toMoviesView()" style="cursor:pointer">Movies</a>
         </li>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Holiday Calender</a>
+          <a class="nav-link" href="#">Sountrack</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="toHolidayView()" style="cursor:pointer">Date</a>
         </li>
       </ul>
     </section>
@@ -122,26 +129,11 @@
           </div>
         </div>
       </div>
-
-      <div class="container">
-        <button onclick="logout()">logout</button>
-      </div>
     </section>
 
     <!-- movies-view -->
-    <ul class="nav nav-tabs m-4">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Movies</a>
-      </li>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sountrack</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Date</a>
-      </li>
-    </ul>
     
+
     <section id="movies-view">
       <!-- konten disini -->
       <table class="table table-striped">
