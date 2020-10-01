@@ -30,14 +30,59 @@ function checkLogin(){
   }
 }
 
-function toRegisterView(event){
-  // 
+function toRegisterView(){
+  pageView("#register-view")
 }
 
-function toLoginView(event){
-  // 
+function register(event){
+  event.preventDefault();
+  let email = $("#register-email").val()
+  let password = $("#register-password").val()
+  $.ajax({
+    url: baseUrl+"/users/register",
+    method: "post",
+    data:{
+      email,
+      password
+    }
+  })
+  .done(data => {
+    console.log(data, "<<<< data login")
+    // localStorage.setItem("token", data.token)
+    // console.log(localStorage.token, "<<<< token");
+    checkLogin()
+  })
+  .fail(err => {
+    console.log(err.responseJSON.errors, "<<<< error")
+  })
 }
 
+function toLoginView(){
+  pageView("#login-view")
+}
+
+function login(event){
+  event.preventDefault();
+  let email = $("#login-email").val()
+  let password = $("#login-password").val()
+  $.ajax({
+    url: baseUrl+"/users/login",
+    method: "post",
+    data:{
+      email,
+      password
+    }
+  })
+  .done(data => {
+    console.log(data, "<<<< data login")
+    localStorage.setItem("token", data.token)
+    console.log(localStorage.token, "<<<< token");
+    checkLogin()
+  })
+  .fail(err => {
+    console.log(err.responseJSON.errors, "<<<< error")
+  })
+}
 function toMoviesView(){
   // 
   $.ajax({
@@ -76,5 +121,50 @@ function toMusicsView(){
 }
 
 function toHolidayView(){
+  $.ajax({
+    url: baseUrl + '/calender',
+    method: 'GET'
+  })
+  .done(data => {
+    $('#holiday-container').empty()
+    data.holidays.forEach(el => {
+      $('#holiday-container').append(`
+      <tr>
+        <td>${el.name}</td>
+        <td>${el.date.iso.slice(0,10)}</td>
+      </tr>
+      `)
+    })
+  })
+  .fail(err => console.log(err))
   // 
+}
+
+function onSignIn(googleUser) {
+  var tokenGoogle = googleUser.getAuthResponse().id_token;
+  // console.log(tokenGoogle); // This is null if the 'email' scope is not present.
+  $.ajax({
+    url: baseUrl+"/users/googleSign",
+    method: "POST",
+    data:{
+      tokenGoogle
+    }
+  })
+  .done(data => {
+    localStorage.setItem("token", data.token)
+    console.log(localStorage.token);
+    checkLogin()
+  })
+  .fail(err => {
+    console.log(err.responseJSON.errors)
+  })
+}
+
+function logout(){
+  localStorage.clear()
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
+  checkLogin()
 }
