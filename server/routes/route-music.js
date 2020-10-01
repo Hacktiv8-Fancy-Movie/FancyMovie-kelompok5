@@ -2,12 +2,10 @@ const router = require("express").Router()
 const axios = require('axios')
 
 //api themoviedb
-router.get("", (req, res, next)=>{
-    console.log(req.query.q);
-    let {keyword} = req.params
+router.get("/chart", (req, res, next)=>{
     axios({
         method: 'GET',
-        url: `https://api.deezer.com/search?q=${keyword}`
+        url: `https://api.deezer.com/chart`
     })
     .then(response=>{
         let musicList = response.data
