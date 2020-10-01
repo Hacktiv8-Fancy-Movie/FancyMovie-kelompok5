@@ -1,10 +1,11 @@
 const axios = require('axios')
 
 class CalenderController {
-    static getHoliday(req, res) {
+    static getHoliday(req, res, next) {
+        let key = '73e908957f6078d58186d94fe7e98c2c7062fee9'
         axios({
             method: 'get',
-            url: `https://calendarific.com/api/v2/holidays?api_key=${process.env.calendarificAPIkey}&country=ID&year=2020`
+            url: `https://calendarific.com/api/v2/holidays?api_key=${key}9&country=ID&year=2020`
         })
         .then(response => {
             let holidays = response.data.response.holidays
@@ -12,7 +13,7 @@ class CalenderController {
             res.status(200).json({holidays})
         })
         .catch (err => {
-            res.status(500).json({err})
+            next(err)
         })
     }
 }
