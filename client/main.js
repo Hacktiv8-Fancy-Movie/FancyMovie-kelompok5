@@ -13,6 +13,8 @@ function pageView(el){
   $('#movies-view').hide()
   $('#musics-view').hide()
   $('#holiday-view').hide()
+  $('.container-logout').hide()
+  $('#navbar').hide()
   $(el).show()
 }
 
@@ -21,6 +23,7 @@ function checkLogin(){
   if(localStorage.token){
 
     pageView('#movies-view')
+    toMoviesView()
   }
   // jika tidak berhasil login
   else{
@@ -83,7 +86,9 @@ function login(event){
   })
 }
 function toMoviesView(){
-  // 
+  pageView('#movies-view')
+  $('#navbar').show()
+  $('.container-logout').show()
   $.ajax({
     url: `${baseUrl}/movies`,
     method: 'get',
@@ -120,6 +125,9 @@ function toMusicsView(){
 }
 
 function toHolidayView(){
+  pageView('#holiday-view')
+  $('#navbar').show()
+  $('.container-logout').show()
   $.ajax({
     url: baseUrl + '/calender',
     method: 'GET'
