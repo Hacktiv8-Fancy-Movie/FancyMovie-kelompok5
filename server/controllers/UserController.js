@@ -58,7 +58,8 @@ class UserController{
    return result;
   }
 
-    static googleSign(req, res, next){
+  static googleSign(req, res, next){
+    let email = null
     const client = new OAuth2Client("805647103784-2kspke3vfdcqodevb2kmvmq865ng8nua.apps.googleusercontent.com");
     client.verifyIdToken({
       idToken: req.body.tokenGoogle,
@@ -66,8 +67,7 @@ class UserController{
     })
     .then(ticket => {
       // console.log(ticket.getPayload().email);
-      let { email } = ticket.getPayload()
-      console.log(email, "EMAIL 1");
+      email = ticket.getPayload().email
       return User.findOne({
         where:{
           email,
@@ -75,7 +75,6 @@ class UserController{
       })
     })
     .then(user => {
-      console.log(email, "EMAIL 2");
       if(user) return user
       else{
         return User.create({
@@ -85,6 +84,7 @@ class UserController{
       }
     })
     .then(user=>{
+      console.log(user, "<<<<user3");
       let token = generateToken({
         id: user.id,
         email: user.email
