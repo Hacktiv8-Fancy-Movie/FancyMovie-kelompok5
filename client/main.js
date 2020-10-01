@@ -122,6 +122,26 @@ function toMoviesView(){
 
 function toMusicsView(){
   // 
+  pageView('#musics-view')
+  $('#navbar').show()
+  $('.container-logout').show()
+  $.ajax({
+    url: baseUrl + '/musics/chart',
+    method: 'GET'
+  })
+  .done(data => {
+    console.log(data);
+    // $('#holiday-container').empty()
+    // data.holidays.forEach(el => {
+    //   $('#holiday-container').append(`
+    //   <tr>
+    //     <td>${el.name}</td>
+    //     <td>${el.date.iso.slice(0,10)}</td>
+    //   </tr>
+    //   `)
+    // })
+  })
+  .fail(err => console.log(err))
 }
 
 function toHolidayView(){
