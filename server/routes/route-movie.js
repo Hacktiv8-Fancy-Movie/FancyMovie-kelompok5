@@ -9,8 +9,10 @@ router.get("/", (req, res, next)=>{
         url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=4f8d0668dd2725012395df54297fb76a'
     })
     .then(movies=>{
+        let movieList = movies.data.results
+        console.log(movieList)
         res.status(200).json(
-            movies.data.results
+            movieList
         )
     })
     .catch(err=> next(err))
