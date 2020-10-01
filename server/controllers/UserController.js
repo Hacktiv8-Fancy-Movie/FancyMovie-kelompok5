@@ -66,7 +66,6 @@ class UserController{
       audience: "805647103784-2kspke3vfdcqodevb2kmvmq865ng8nua.apps.googleusercontent.com",
     })
     .then(ticket => {
-      // console.log(ticket.getPayload().email);
       email = ticket.getPayload().email
       return User.findOne({
         where:{
@@ -84,7 +83,6 @@ class UserController{
       }
     })
     .then(user=>{
-      console.log(user, "<<<<user3");
       let token = generateToken({
         id: user.id,
         email: user.email
