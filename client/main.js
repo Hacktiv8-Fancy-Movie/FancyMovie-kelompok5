@@ -27,14 +27,59 @@ function checkLogin(){
   }
 }
 
-function toRegisterView(event){
-  // 
+function toRegisterView(){
+  pageView("#register-view")
 }
 
-function toLoginView(event){
-  // 
+function register(event){
+  event.preventDefault();
+  let email = $("#register-email").val()
+  let password = $("#register-password").val()
+  $.ajax({
+    url: baseUrl+"/users/register",
+    method: "post",
+    data:{
+      email,
+      password
+    }
+  })
+  .done(data => {
+    console.log(data, "<<<< data login")
+    // localStorage.setItem("token", data.token)
+    // console.log(localStorage.token, "<<<< token");
+    checkLogin()
+  })
+  .fail(err => {
+    console.log(err.responseJSON.errors, "<<<< error")
+  })
 }
 
+function toLoginView(){
+  pageView("#login-view")
+}
+
+function login(event){
+  event.preventDefault();
+  let email = $("#login-email").val()
+  let password = $("#login-password").val()
+  $.ajax({
+    url: baseUrl+"/users/login",
+    method: "post",
+    data:{
+      email,
+      password
+    }
+  })
+  .done(data => {
+    console.log(data, "<<<< data login")
+    localStorage.setItem("token", data.token)
+    console.log(localStorage.token, "<<<< token");
+    checkLogin()
+  })
+  .fail(err => {
+    console.log(err.responseJSON.errors, "<<<< error")
+  })
+}
 function toMoviesView(){
   // 
 }

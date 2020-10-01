@@ -1,25 +1,49 @@
 const {OAuth2Client} = require('google-auth-library');
 const { generateToken } = require("../helpers/jwt")
-// const { compare } = require("../helpers/bcrypt") //belum dipakai
+const { compare } = require("../helpers/bcrypt")
 const { User } = require("../models")
 
 class UserController{
 
   static async register (req, res, next){
     try{
-      console.log(req.body);
-      res.status(200).json({msg: "register success"})
-    } catch(err){
-
+      let {email, password} = req.body
+      let user = await User.create(
+        {
+          email,
+          password
+        }
+      )
+      res.status(201).json({msg: "sign up success", 
+      user:{
+        id: user.id,
+        email: user.email,
+      }})
+    }catch(err){
+      // res.status(500).json({msg: err.msg || "internal server error"})
+      next(err)
     }
   }
 
   static async login (req, res, next){
-    try{
-      console.log(req.body);
-      res.status(200).json({msg: "login success"})
-    }catch(err){
-      
+    try {
+      const { email, password } = req.body
+      let user = await User.findOne({
+        where:{
+          email
+        }
+      })
+      if(!user) throw ({msg: "invalid email or password", statusCode: 400})
+      if(!compare(password, user.password)) throw ({msg: "invalid email or password", statusCode: 400})
+      let payload = {
+        id : user.id,
+        email : user.email
+      }
+      let token = generateToken(payload)
+      res.status(200).json({msg: "sign in success", token })
+    } catch (err) {
+      // res.status(500).json({err})
+      next(err)
     }
   }
 
@@ -35,7 +59,6 @@ class UserController{
   }
 
   static googleSign(req, res, next){
-    // console.log(req.body.tokenGoogle, "token google <<<<");
     const client = new OAuth2Client(process.env.G_CLIENT_ID);
     client.verifyIdToken({
       idToken: req.body.tokenGoogle,
