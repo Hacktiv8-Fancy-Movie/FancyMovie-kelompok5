@@ -46,23 +46,3 @@ function toMusicsView(){
 function toHolidayView(){
   // 
 }
-  
-function onSignIn(googleUser) {
-  var tokenGoogle = googleUser.getAuthResponse().id_token;
-  // console.log(tokenGoogle); // This is null if the 'email' scope is not present.
-  $.ajax({
-    url: baseUrl+"/users/googleSign",
-    method: "POST",
-    data:{
-      tokenGoogle
-    }
-  })
-  .done(data => {
-    localStorage.setItem("token", data.token)
-    console.log(localStorage.token, "<<<< token");
-    checkLogin()
-  })
-  .fail(err => {
-    console.log(err.responseJSON.errors, "<<<< error")
-  })
-}
