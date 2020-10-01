@@ -10,7 +10,7 @@ router.get("/", (req, res, next)=>{
     })
     .then(movies=>{
         let movieList = movies.data.results
-        console.log(movieList)
+        // console.log(movieList)
         res.status(200).json(
             movieList
         )

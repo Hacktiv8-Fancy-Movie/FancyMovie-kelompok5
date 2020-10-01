@@ -5,6 +5,7 @@ async function authentication(req, res, next) {
     try {
         let { token } = req.headers
         let decoded = verifyToken(token)
+        console.log(decoded)
         let user = await User.findOne({
             where: { email: decoded.email }
         })
