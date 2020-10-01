@@ -9,10 +9,10 @@
     />
 
     <!-- Meta Google Sign -->
-    <!-- <meta -->
-    <!-- name="google-signin-client_id" -->
-    <!-- content="805647103784-2kspke3vfdcqodevb2kmvmq865ng8nua.apps.googleusercontent.com" -->
-    <!-- /> -->
+    <meta
+      name="google-signin-client_id"
+      content="805647103784-2kspke3vfdcqodevb2kmvmq865ng8nua.apps.googleusercontent.com"
+    />
 
     <!-- Bootstrap CSS -->
     <link
@@ -33,10 +33,16 @@
     <!-- login-view -->
     <section id="login-view">
       <!-- konten disini -->
+      <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+          <a class="navbar-brand" href="#">Fancy Movies</a>
+        </div>
+      </nav>
       <h1>ini login view</h1>
-      <!-- <div class="container"> -->
-      <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-      <!-- </div> -->
+      <div class="container">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <button onclick="logout()">logout</button>
+      </div>
     </section>
 
     <!-- movies-view -->

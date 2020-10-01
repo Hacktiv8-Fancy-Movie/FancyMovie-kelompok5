@@ -46,3 +46,32 @@ function toMusicsView(){
 function toHolidayView(){
   // 
 }
+
+function onSignIn(googleUser) {
+  var tokenGoogle = googleUser.getAuthResponse().id_token;
+  // console.log(tokenGoogle); // This is null if the 'email' scope is not present.
+  $.ajax({
+    url: baseUrl+"/users/googleSign",
+    method: "POST",
+    data:{
+      tokenGoogle
+    }
+  })
+  .done(data => {
+    localStorage.setItem("token", data.token)
+    console.log(localStorage.token);
+    checkLogin()
+  })
+  .fail(err => {
+    console.log(err.responseJSON.errors)
+  })
+}
+
+function logout(){
+  localStorage.clear()
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
+  checkLogin()
+}
