@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 router.use('/users', users)
 
-// router.use(authetication)
+router.use(authetication)
 router.use('/calender', routeCalender)
 router.use('/movies', movies)
 router.use('/musics', musics)
