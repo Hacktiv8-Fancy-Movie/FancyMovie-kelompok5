@@ -13,6 +13,7 @@ function pageView(el){
   $('#movies-view').hide()
   $('#musics-view').hide()
   $('#holiday-view').hide()
+  $('#upcoming-view').hide()
   $('#musics-search-view').hide()
   $('.container-logout').hide()
   $('#navbar').hide()
@@ -86,6 +87,7 @@ function login(event){
     console.log(err.responseJSON.errors, "<<<< error")
   })
 }
+
 function toMoviesView(){
   pageView('#movies-view')
   $('#navbar').show()
@@ -118,7 +120,250 @@ function toMoviesView(){
     })
 }
 
+let movie
+function toUpcomingMoviesView(){
+  
+  pageView('#upcoming-view')
+  $('#navbar').show()
+  $('.container-logout').show()
+  $.ajax({
+    url: `${baseUrl}/movies/upcoming`,
+    method: 'get',
+    headers: {
+        token: localStorage.token
+    }
+  })
+    .done(movies => {
+        movie = movies
+        console.log(movie, '<<< data movies')
+        return $.ajax({
+          url: baseUrl + '/calender',
+          method: 'GET',
+          headers: {
+            token: localStorage.token
+        }
+        })
+        .done(data =>{
+          let holiday = data.holidays
+          console.log(holiday, "ini holiday")
+          $('#holiday-container').empty()
+          $('#container-movies').empty()
+          $('#container-january').empty()
+          $('#container-january1').empty()
+          $('#container-february').empty()
+          $('#container-february1').empty()
 
+
+          movie.forEach(el => {
+                let month = +el.release_date.split("-")[1]
+                if(month == 1){
+                  $('#container-january').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 2){
+                  $('#container-february').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 3){
+                  $('#container-march').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 4){
+                  $('#container-april').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 5){
+                  $('#container-may').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 6){
+                  $('#container-june').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 7){
+                  $('#container-july').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 8){
+                  $('#container-august').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 9){
+                  $('#container-september').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 10){
+                  $('#container-october').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 11){
+                  $('#container-november').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 12){
+                  $('#container-december').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                
+
+
+          })
+
+          holiday.forEach(el => {
+            let month = el.date.datetime.month
+            if(month == 1){
+
+              $('#container-january1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 2){
+
+              $('#container-february1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 3){
+
+              $('#container-march1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 4){
+
+              $('#container-april1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 5){
+
+              $('#container-may1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 6){
+
+              $('#container-june1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 7){
+
+              $('#container-july1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 8){
+
+              $('#container-august1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 9){
+
+              $('#container-september1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 10){
+
+              $('#container-october1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 11){
+
+              $('#container-november1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 12){
+
+              $('#container-december1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+
+      })
+        })
+
+    })
+    .fail(err =>{
+        console.log(err.responseJSON.errors)
+    })
+}
 
 function toMusicsView(){
   // 
