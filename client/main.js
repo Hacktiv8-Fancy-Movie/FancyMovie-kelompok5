@@ -13,6 +13,8 @@ function pageView(el){
   $('#movies-view').hide()
   $('#musics-view').hide()
   $('#holiday-view').hide()
+  $('#upcoming-view').hide()
+  $('#musics-search-view').hide()
   $('.container-logout').hide()
   $('#navbar').hide()
   $(el).show()
@@ -85,6 +87,7 @@ function login(event){
     console.log(err.responseJSON.errors, "<<<< error")
   })
 }
+
 function toMoviesView(){
   pageView('#movies-view')
   $('#navbar').show()
@@ -97,7 +100,6 @@ function toMoviesView(){
     }
   })
     .done(movies => {
-        console.log(movies, '<<< data movies')
         $('#container-movies').empty()
         let i = 0
         movies.forEach(movie => {
@@ -118,7 +120,264 @@ function toMoviesView(){
     })
 }
 
+let movie
+function toUpcomingMoviesView(){
+  
+  pageView('#upcoming-view')
+  $('#navbar').show()
+  $('.container-logout').show()
+  $.ajax({
+    url: `${baseUrl}/movies/upcoming`,
+    method: 'get',
+    headers: {
+        token: localStorage.token
+    }
+  })
+    .done(movies => {
+        movie = movies
+        console.log(movie, '<<< data movies')
+        return $.ajax({
+          url: baseUrl + '/calender',
+          method: 'GET',
+          headers: {
+            token: localStorage.token
+        }
+        })
+        .done(data =>{
+          let holiday = data.holidays
+          console.log(holiday, "ini holiday")
+          $('#holiday-container').empty()
+          $('#container-movies').empty()
+          $('#container-january').empty()
+          $('#container-january1').empty()
+          $('#container-february').empty()
+          $('#container-february1').empty()
 
+
+          movie.forEach(el => {
+                let month = +el.release_date.split("-")[1]
+                if(month == 1){
+                  $('#container-january').empty()
+                  $('#container-january').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 2){
+                  
+                  $('#container-february').empty()
+                  $('#container-february').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 3){
+
+                  $('#container-march').empty()
+                  $('#container-march').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 4){
+                  $('#container-april').empty()
+                  $('#container-april').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 5){
+                  $('#container-may').empty()
+                  $('#container-may').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 6){
+                  $('#container-june').empty()
+                  $('#container-june').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 7){
+                  $('#container-july').empty()
+                  $('#container-july').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 8){
+                  $('#container-august').empty()
+                  $('#container-august').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 9){
+                  $('#container-september').empty()
+                  $('#container-september').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 10){
+                  $('#container-october').empty()
+                  $('#container-october').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 11){
+                  $('#container-november').empty()
+                  $('#container-november').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                if(month == 12){
+                  $('#container-december').empty()
+                  $('#container-december').append(`
+              
+                    <li>${el.title}</li>
+                  
+                  `)
+
+                }
+                
+
+
+          })
+
+          holiday.forEach(el => {
+            let month = el.date.datetime.month
+            if(month == 1){
+              $('#container-january1').empty()
+              $('#container-january1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 2){
+              $('#container-february1').empty()
+              $('#container-february1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 3){
+              $('#container-march1').empty()
+              $('#container-march1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 4){
+              $('#container-april1').empty()
+              $('#container-april1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 5){
+              $('#container-may1').empty()
+              $('#container-may1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 6){
+              $('#container-june1').empty()
+              $('#container-june1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 7){
+              $('#container-july1').empty()
+              $('#container-july1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 8){
+              $('#container-august1').empty()
+              $('#container-august1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 9){
+              $('#container-september1').empty()
+              $('#container-september1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 10){
+              $('#container-october1').empty()
+              $('#container-october1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 11){
+              $('#container-november1').empty()
+              $('#container-november1').append(`
+          
+                <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+            if(month == 12){
+              $('#container-december1').empty()
+              $('#container-december1').append(`
+          
+              <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
+              
+              `)
+            }
+
+      })
+        })
+
+    })
+    .fail(err =>{
+        console.log(err.responseJSON.errors)
+    })
+}
 
 function toMusicsView(){
   // 
@@ -134,7 +393,6 @@ function toMusicsView(){
   })
   .done(data => {
     data = data.tracks.data
-    console.log(data);
     $('#container-musics').empty()
     data.map(el => {
       $('#container-musics').append(`
@@ -299,4 +557,41 @@ function logout(){
     console.log('User signed out.');
   });
   checkLogin()
+}
+
+function toMusicsSearchView(event){
+  // 
+  event.preventDefault()
+  let keyword = $("#search-music").val()
+  console.log(keyword, "<<keyword");
+  pageView('#musics-search-view')
+  $('#navbar').show()
+  $('.container-logout').show()
+  $.ajax({
+    url: baseUrl + `/musics/search?query=${keyword}`,
+    method: 'GET',
+    headers: {
+      token: localStorage.token
+    }
+  })
+  .done(data => {
+    data = data.data
+    console.log(data);
+    $('#container-musics-search').empty()
+    data.map(el => {
+      $('#container-musics-search').append(`
+      <tr>
+        <td><img src="${el.album.cover}" alt="music poster"></td>
+        <td>${el.title}</td>
+        <td>${el.artist.name}</td>
+        <td>
+          <audio controls>
+            <source src="${el.preview}"
+          </audio>
+        </td>
+      </tr>
+      `)
+    })
+  })
+  .fail(err => console.log(err))
 }
