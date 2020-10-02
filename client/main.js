@@ -145,19 +145,22 @@ function toUpcomingMoviesView(){
         })
         .done(data =>{
           let holiday = data.holidays
-          console.log(holiday, "ini holiday")
-          $('#holiday-container').empty()
-          $('#container-movies').empty()
           $('#container-january').empty()
-          $('#container-january1').empty()
           $('#container-february').empty()
-          $('#container-february1').empty()
-
+          $('#container-march').empty()
+          $('#container-april').empty()
+          $('#container-may').empty()
+          $('#container-june').empty()
+          $('#container-july').empty()
+          $('#container-august').empty()
+          $('#container-september').empty()
+          $('#container-october').empty()
+          $('#container-november').empty()
+          $('#container-december').empty()
 
           movie.forEach(el => {
                 let month = +el.release_date.split("-")[1]
                 if(month == 1){
-                  $('#container-january').empty()
                   $('#container-january').append(`
               
                     <li>${el.title}</li>
@@ -167,7 +170,6 @@ function toUpcomingMoviesView(){
                 }
                 if(month == 2){
                   
-                  $('#container-february').empty()
                   $('#container-february').append(`
               
                     <li>${el.title}</li>
@@ -177,7 +179,6 @@ function toUpcomingMoviesView(){
                 }
                 if(month == 3){
 
-                  $('#container-march').empty()
                   $('#container-march').append(`
               
                     <li>${el.title}</li>
@@ -186,7 +187,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 4){
-                  $('#container-april').empty()
                   $('#container-april').append(`
               
                     <li>${el.title}</li>
@@ -195,7 +195,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 5){
-                  $('#container-may').empty()
                   $('#container-may').append(`
               
                     <li>${el.title}</li>
@@ -204,7 +203,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 6){
-                  $('#container-june').empty()
                   $('#container-june').append(`
               
                     <li>${el.title}</li>
@@ -213,7 +211,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 7){
-                  $('#container-july').empty()
                   $('#container-july').append(`
               
                     <li>${el.title}</li>
@@ -222,7 +219,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 8){
-                  $('#container-august').empty()
                   $('#container-august').append(`
               
                     <li>${el.title}</li>
@@ -231,7 +227,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 9){
-                  $('#container-september').empty()
                   $('#container-september').append(`
               
                     <li>${el.title}</li>
@@ -240,7 +235,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 10){
-                  $('#container-october').empty()
                   $('#container-october').append(`
               
                     <li>${el.title}</li>
@@ -249,7 +243,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 11){
-                  $('#container-november').empty()
                   $('#container-november').append(`
               
                     <li>${el.title}</li>
@@ -258,7 +251,6 @@ function toUpcomingMoviesView(){
 
                 }
                 if(month == 12){
-                  $('#container-december').empty()
                   $('#container-december').append(`
               
                     <li>${el.title}</li>
@@ -271,10 +263,23 @@ function toUpcomingMoviesView(){
 
           })
 
+          $('#container-january1').empty()
+          $('#container-february1').empty()
+          $('#container-march1').empty()
+          $('#container-april1').empty()
+          $('#container-may1').empty()
+          $('#container-june1').empty()
+          $('#container-july1').empty()
+          $('#container-august1').empty()
+          $('#container-september1').empty()
+          $('#container-october1').empty()
+          $('#container-november1').empty()
+          $('#container-december1').empty()
+
           holiday.forEach(el => {
             let month = el.date.datetime.month
             if(month == 1){
-              $('#container-january1').empty()
+              
               $('#container-january1').append(`
           
                 <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -282,7 +287,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 2){
-              $('#container-february1').empty()
               $('#container-february1').append(`
           
               <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -290,7 +294,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 3){
-              $('#container-march1').empty()
               $('#container-march1').append(`
           
                 <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -298,7 +301,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 4){
-              $('#container-april1').empty()
               $('#container-april1').append(`
           
               <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -306,7 +308,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 5){
-              $('#container-may1').empty()
               $('#container-may1').append(`
           
                 <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -314,7 +315,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 6){
-              $('#container-june1').empty()
               $('#container-june1').append(`
           
               <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -322,7 +322,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 7){
-              $('#container-july1').empty()
               $('#container-july1').append(`
           
                 <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -330,7 +329,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 8){
-              $('#container-august1').empty()
               $('#container-august1').append(`
           
               <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -338,7 +336,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 9){
-              $('#container-september1').empty()
               $('#container-september1').append(`
           
                 <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -346,7 +343,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 10){
-              $('#container-october1').empty()
               $('#container-october1').append(`
           
               <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -354,7 +350,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 11){
-              $('#container-november1').empty()
               $('#container-november1').append(`
           
                 <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -362,7 +357,6 @@ function toUpcomingMoviesView(){
               `)
             }
             if(month == 12){
-              $('#container-december1').empty()
               $('#container-december1').append(`
           
               <li>${el.date.iso.slice(0,10)} : ${el.name}</li>
@@ -412,7 +406,7 @@ function toMusicsView(){
   .fail(err => console.log(err))
 }
 
-function toHolidayView(){
+function toHolidayView() {
   pageView('#holiday-view')
   $('#navbar').show()
   $('.container-logout').show()
@@ -423,19 +417,18 @@ function toHolidayView(){
       token: localStorage.token
     }
   })
-  .done(data => {
-    $('#holiday-container').empty()
-    data.holidays.forEach(el => {
-      $('#holiday-container').append(`
-      <tr>
-        <td>${el.name}</td>
-        <td>${el.date.iso.slice(0,10)}</td>
-      </tr>
-      `)
+    .done(data => {
+      $('#holiday-container').empty()
+      data.holidays.forEach(el => {
+        $('#holiday-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0, 10)}</td>
+            </tr>
+          `)
+      })
     })
-  })
-  .fail(err => console.log(err))
-  // 
+    .fail(err => console.log(err))
 }
 
 function onSignIn(googleUser) {
