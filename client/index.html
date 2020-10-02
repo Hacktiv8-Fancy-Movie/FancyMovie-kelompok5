@@ -49,6 +49,14 @@
               >Holiday Date</a
             >
           </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              onclick=""
+              style="cursor: pointer"
+              >Upcoming Movies</a
+            >
+          </li>
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -151,20 +159,22 @@
 
     <section id="movies-view">
       <!-- konten disini -->
-      <table class="table table-striped justify-content-center">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Popularity</th>
-            <th scope="col">Overview</th>
-            <th scope="col">Poster</th>
-          </tr>
-        </thead>
-        <tbody id="container-movies">
-          <!-- isi movies -->
-        </tbody>
-      </table>
+      <div class="container">
+        <table class="table table-striped justify-content-center">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Popularity</th>
+              <th scope="col">Overview</th>
+              <th scope="col">Poster</th>
+            </tr>
+          </thead>
+          <tbody id="container-movies">
+            <!-- isi movies -->
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <!-- musics-view -->
@@ -181,21 +191,25 @@
             </tr>
           </thead>
           <tbody id="container-musics">
-            <!-- isi movies -->
+            <!-- isi musics -->
           </tbody>
         </table>
       </div>
     </section>
 
     <section id="holiday-view">
-      <h1>Holiday List</h1>
-      <table class="table table-striped justify-content-center">
-        <thead>
-          <th>Name of the day</th>
-          <th>Date</th>
-        </thead>
-        <tbody id="holiday-container"></tbody>
-      </table>
+      <!-- konten disini -->
+      <div class="container">
+        <h1>Holiday List</h1>
+        <table class="table table-striped justify-content-center">
+          <thead>
+            <th>Name of the day</th>
+            <th>Date</th>
+          </thead>
+          <tbody id="holiday-container"></tbody>
+          <!-- isi holidays -->
+        </table>
+      </div>
     </section>
 
     <!-- Optional JavaScript -->

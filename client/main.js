@@ -127,7 +127,10 @@ function toMusicsView(){
   $('.container-logout').show()
   $.ajax({
     url: baseUrl + '/musics/chart',
-    method: 'GET'
+    method: 'GET',
+    headers: {
+      token: localStorage.token
+    }
   })
   .done(data => {
     data = data.tracks.data
@@ -157,7 +160,10 @@ function toHolidayView(){
   $('.container-logout').show()
   $.ajax({
     url: baseUrl + '/calender',
-    method: 'GET'
+    method: 'GET',
+    headers: {
+      token: localStorage.token
+    }
   })
   .done(data => {
     $('#holiday-container').empty()
