@@ -122,6 +122,33 @@ function toMoviesView(){
 
 function toMusicsView(){
   // 
+  pageView('#musics-view')
+  $('#navbar').show()
+  $('.container-logout').show()
+  $.ajax({
+    url: baseUrl + '/musics/chart',
+    method: 'GET'
+  })
+  .done(data => {
+    data = data.tracks.data
+    console.log(data);
+    $('#container-musics').empty()
+    data.map(el => {
+      $('#container-musics').append(`
+      <tr>
+        <td><img src="${el.album.cover}" alt="movie poster"></td>
+        <td>${el.title}</td>
+        <td>${el.artist.name}</td>
+        <td>
+          <audio controls>
+            <source src="${el.preview}"
+          </audio>
+        </td>
+      </tr>
+      `)
+    })
+  })
+  .fail(err => console.log(err))
 }
 
 function toHolidayView(){
