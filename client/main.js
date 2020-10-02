@@ -453,8 +453,9 @@ function logout(){
   checkLogin()
 }
 
-function toMusicsSearchView(){
+function toMusicsSearchView(event){
   // 
+  event.preventDefault()
   let keyword = $("#search-music").val()
   console.log(keyword, "<<keyword");
   pageView('#musics-search-view')
