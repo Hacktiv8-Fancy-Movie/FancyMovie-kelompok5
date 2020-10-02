@@ -154,7 +154,7 @@ function toMusicsView(){
   .fail(err => console.log(err))
 }
 
-function toHolidayView(){
+function toHolidayView() {
   pageView('#holiday-view')
   $('#navbar').show()
   $('.container-logout').show()
@@ -165,18 +165,110 @@ function toHolidayView(){
       token: localStorage.token
     }
   })
-  .done(data => {
-    $('#holiday-container').empty()
-    data.holidays.forEach(el => {
-      $('#holiday-container').append(`
-      <tr>
-        <td>${el.name}</td>
-        <td>${el.date.iso.slice(0,10)}</td>
-      </tr>
-      `)
+    .done(data => {
+      // let januari = []
+      $('#januari-container').empty()
+      $('#februari-container').empty()
+      $('#maret-container').empty()
+      $('#april-container').empty()
+      $('#mei-container').empty()
+      $('#juni-container').empty()
+      $('#juli-container').empty()
+      $('#agustus-container').empty()
+      $('#september-container').empty()
+      $('#oktober-container').empty()
+      $('#november-container').empty()
+      $('#desember-container').empty()
+      data.holidays.forEach(el => {
+        if (el.date.datetime.month == 1) {
+          $('#januari-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 2) {
+          $('#februari-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 3) {
+          $('#maret-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 4) {
+          $('#april-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 5) {
+          $('#mei-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 6) {
+          $('#juni-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 7) {
+          $('#juli-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 8) {
+          $('#agustus-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 9) {
+          $('#september-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 10) {
+          $('#oktober-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 11) {
+          $('#november-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }else if (el.date.datetime.month == 12) {
+          $('#desember-container').append(`
+            <tr>
+              <td>${el.name}</td>
+              <td>${el.date.iso.slice(0,10)}</td>
+            </tr>
+          `)
+        }
+        
+      })
     })
-  })
-  .fail(err => console.log(err))
+    .fail(err => console.log(err))
   // 
 }
 
