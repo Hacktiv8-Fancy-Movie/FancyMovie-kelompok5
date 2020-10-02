@@ -176,6 +176,22 @@
     <section id="musics-view">
       <div class="container">
         <!-- konten disini -->
+        <form
+          onsubmit="toMusicsSearchView(event)"
+          class="form-inline my-2 my-lg-0"
+        >
+          <input
+            id="search-music"
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            required
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search Soundtrack
+          </button>
+        </form>
         <table class="table table-striped justify-content-center">
           <thead>
             <tr>
@@ -203,6 +219,26 @@
           </thead>
           <tbody id="holiday-container"></tbody>
           <!-- isi holidays -->
+        </table>
+      </div>
+    </section>
+
+    <!-- music search -->
+    <section id="musics-search-view">
+      <div class="container">
+        <!-- konten disini -->
+        <table class="table table-striped justify-content-center">
+          <thead>
+            <tr>
+              <th scope="col">Poster</th>
+              <th scope="col">Title</th>
+              <th scope="col">Artist</th>
+              <th scope="col">Preview</th>
+            </tr>
+          </thead>
+          <tbody id="container-musics-search">
+            <!-- isi musics -->
+          </tbody>
         </table>
       </div>
     </section>
