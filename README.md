@@ -2,8 +2,6 @@
 
 Show movie recommendation, sountrack, and recommendation date to watch.
 
-- Fitur disini
-
 &nbsp;
 
 ## RESTful endpoints
@@ -59,7 +57,7 @@ _Request Body_
 }
 ```
 
-_Response (201 - Created)_
+_Response (200 - OK)_
 
 ```
 {
