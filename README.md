@@ -9,15 +9,15 @@ My Assets App is an application to manage your assets. This app has :
 
 ## RESTful endpoints
 
-### GET /assets
+### GET /calender
 
-> Get all assets
+> Get all holiday list
 
 _Request Header_
 
 ```
 {
-  "access_token": "<your access token>"
+  "token": "<your access token>"
 }
 ```
 
@@ -30,71 +30,46 @@ not needed
 _Response (200)_
 
 ```
-[
-  {
-    "id": 1,
-    "name": "<asset name>",
-    "description": "<asset description>",
-    "createdAt": "2020-03-20T07:15:12.149Z",
-    "updatedAt": "2020-03-20T07:15:12.149Z",
-  },
-  {
-    "id": 2,
-    "name": "<asset name>",
-    "description": "<asset description>",
-    "createdAt": "2020-03-20T07:15:12.149Z",
-    "updatedAt": "2020-03-20T07:15:12.149Z",
-  }
-]
-```
-
-_Response (400 - Bad Request)_
-
-```
 {
-  "message": "Invalid request"
+    "meta": {
+        "code": 200
+    },
+    "response": {
+        "holidays": [
+            {
+                "name": "Name of holiday goes here",
+                "description": "Description of holiday goes here",
+                "date": {
+                    "iso": "2018-12-31",
+                    "datetime": {
+                        "year": 2018,
+                        "month": 12,
+                        "day": 31
+                    }
+                },
+                "type": [
+                    "Type of Observance goes here"
+                ]
+            }
+        ]
+    }
 }
 ```
 
----
-
-### POST /assets
-
-> Create new asset
-
-_Request Header_
+_Response (401 - Unauthorized)_
 
 ```
 {
-  "access_token": "<your access token>"
+    "errors": [
+        "failed to authenticate"
+    ]
 }
 ```
-
-_Request Body_
-
+_Response (500 - Internal Server Error)_
 ```
 {
-  "name": "<name to get insert into>",
-  "description": "<description to get insert into>"
-}
-```
-
-_Response (201 - Created)_
-
-```
-{
-  "id": <given id by system>,
-  "name": "<posted name>",
-  "description": "<posted description>",
-  "createdAt": "2020-03-20T07:15:12.149Z",
-  "updatedAt": "2020-03-20T07:15:12.149Z",
-}
-```
-
-_Response (400 - Bad Request)_
-
-```
-{
-  "message": "Invalid requests"
+    "errors": [
+        "internal server error"
+    ]
 }
 ```
