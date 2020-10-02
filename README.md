@@ -4,10 +4,79 @@ Show movie recommendation, sountrack, and recommendation date to watch.
 
 - Fitur disini
 
-
 &nbsp;
 
 ## RESTful endpoints
+
+### POST /users/register
+
+> Create new users
+
+_Request Body_
+
+```
+{
+  "email": "<email to register>",
+  "password": "<password to register will be hashed by bcrypt>"
+}
+```
+
+_Response (201 - Created)_
+
+```
+{
+    "msg": "sign up success",
+    "user": {
+        "id": <given id by system>,,
+        "email": "<registered email>"
+    }
+}
+```
+
+_Response (400 - Bad Request)_
+
+```
+{
+    "errors": [
+        "email is required",
+        "password is required",
+        "email must be unique",
+        "input is not valid email"
+    ]
+}
+```
+
+### POST /users/login
+
+> Login user to the system
+
+_Request Body_
+
+```
+{
+  "email": "<email that has been registered>",
+  "password": "<password that has been registered>"
+}
+```
+
+_Response (201 - Created)_
+
+```
+{
+    "msg": "sign in success",
+    "token": "<token auth that given by the system>"
+}
+```
+
+_Response (400 - Bad Request)_
+
+```
+{
+    "errors": [
+        "invalid email or password"
+    ]
+}
+```
 
 ### GET /movies
 
@@ -17,7 +86,7 @@ _Request Header_
 
 ```
 {
-  "token": "<your token>"
+  "token": "<your access token>"
 }
 ```
 
@@ -139,10 +208,70 @@ _Response (200_Succses)_
 ]
 ```
 
-_Response (500)_
+---
+
+### GET /calender
+
+> Get all holiday list
+> _Request Header_
 
 ```
 {
-  "error": "Internal server error"
+  "token": "<your token>"
+}
+```
+
+_Request Body_
+
+```
+not needed
+```
+
+_Response (200_Succses)_
+
+```
+{
+    "meta": {
+        "code": 200
+    },
+    "response": {
+        "holidays": [
+            {
+                "name": "Name of holiday goes here",
+                "description": "Description of holiday goes here",
+                "date": {
+                    "iso": "2018-12-31",
+                    "datetime": {
+                        "year": 2018,
+                        "month": 12,
+                        "day": 31
+                    }
+                },
+                "type": [
+                    "Type of Observance goes here"
+                ]
+            }
+        ]
+    }
+}
+```
+
+_Response (401 - Unauthorized)_
+
+```
+{
+    "errors": [
+        "failed to authenticate"
+    ]
+}
+```
+
+_Response (500 - Internal Server Error)_
+
+```
+{
+    "errors": [
+        "internal server error"
+    ]
 }
 ```

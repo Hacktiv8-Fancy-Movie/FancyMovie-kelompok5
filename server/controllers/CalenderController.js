@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 class CalenderController {
-    static getHoliday(req, res) {
+    static getHoliday(req, res, next) {
         let key = "73e908957f6078d58186d94fe7e98c2c7062fee9"
         axios({
             method: 'get',
@@ -13,7 +13,7 @@ class CalenderController {
             res.status(200).json({holidays})
         })
         .catch (err => {
-            res.status(500).json({err})
+            next(err)
         })
     }
 }

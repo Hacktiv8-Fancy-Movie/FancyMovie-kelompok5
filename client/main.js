@@ -14,6 +14,7 @@ function pageView(el){
   $('#musics-view').hide()
   $('#holiday-view').hide()
   $('#upcoming-view').hide()
+  $('#musics-search-view').hide()
   $('.container-logout').hide()
   $('#navbar').hide()
   $(el).show()
@@ -99,7 +100,6 @@ function toMoviesView(){
     }
   })
     .done(movies => {
-        console.log(movies, '<<< data movies')
         $('#container-movies').empty()
         let i = 0
         movies.forEach(movie => {
@@ -372,11 +372,13 @@ function toMusicsView(){
   $('.container-logout').show()
   $.ajax({
     url: baseUrl + '/musics/chart',
-    method: 'GET'
+    method: 'GET',
+    headers: {
+      token: localStorage.token
+    }
   })
   .done(data => {
     data = data.tracks.data
-    console.log(data);
     $('#container-musics').empty()
     data.map(el => {
       $('#container-musics').append(`
@@ -402,7 +404,10 @@ function toHolidayView(){
   $('.container-logout').show()
   $.ajax({
     url: baseUrl + '/calender',
-    method: 'GET'
+    method: 'GET',
+    headers: {
+      token: localStorage.token
+    }
   })
   .done(data => {
     $('#holiday-container').empty()
@@ -446,4 +451,40 @@ function logout(){
     console.log('User signed out.');
   });
   checkLogin()
+}
+
+function toMusicsSearchView(){
+  // 
+  let keyword = $("#search-music").val()
+  console.log(keyword, "<<keyword");
+  pageView('#musics-search-view')
+  $('#navbar').show()
+  $('.container-logout').show()
+  $.ajax({
+    url: baseUrl + `/musics/search?query=${keyword}`,
+    method: 'GET',
+    headers: {
+      token: localStorage.token
+    }
+  })
+  .done(data => {
+    data = data.data
+    console.log(data);
+    $('#container-musics-search').empty()
+    data.map(el => {
+      $('#container-musics-search').append(`
+      <tr>
+        <td><img src="${el.album.cover}" alt="music poster"></td>
+        <td>${el.title}</td>
+        <td>${el.artist.name}</td>
+        <td>
+          <audio controls>
+            <source src="${el.preview}"
+          </audio>
+        </td>
+      </tr>
+      `)
+    })
+  })
+  .fail(err => console.log(err))
 }
